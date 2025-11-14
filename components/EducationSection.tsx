@@ -1,9 +1,12 @@
 "use client";
 
-import { EvervaultCard, Icon } from "@/components/ui/evervault-card";
+import { Icon, generateRandomString } from "@/components/ui/evervault-card";
+import { useMotionValue } from "motion/react";
+import { useMotionTemplate } from "motion/react";
 import Image from "next/image";
 import { motion } from "motion/react";
 import ScrollReveal from "@/components/summary";
+import { useState, useEffect } from "react";
 
 interface EducationItem {
   institution: string;
@@ -29,6 +32,74 @@ const educationData: EducationItem[] = [
     logo: "/images/sima-logo.png", // User needs to add this logo
   },
 ];
+
+// Logo Card Component with hover effect
+function LogoCard({ logo, institution }: { logo: string; institution: string }) {
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const [randomString, setRandomString] = useState("");
+
+  useEffect(() => {
+    const str = generateRandomString(1500);
+    setRandomString(str);
+  }, []);
+
+  function onMouseMove({ currentTarget, clientX, clientY }: React.MouseEvent<HTMLDivElement>) {
+    const { left, top } = currentTarget.getBoundingClientRect();
+    mouseX.set(clientX - left);
+    mouseY.set(clientY - top);
+    const str = generateRandomString(1500);
+    setRandomString(str);
+  }
+
+  const maskImage = useMotionTemplate`radial-gradient(250px at ${mouseX}px ${mouseY}px, white, transparent)`;
+  const style = { maskImage, WebkitMaskImage: maskImage };
+
+  return (
+    <div className="flex-shrink-0">
+      <div
+        onMouseMove={onMouseMove}
+        className="border border-black/[0.2] dark:border-white/[0.2] flex flex-col items-center justify-center max-w-sm mx-auto p-4 relative h-[10rem] w-[10rem] md:h-[12rem] md:w-[12rem] bg-black/30 rounded-3xl overflow-hidden group cursor-pointer"
+      >
+        <Icon className="absolute h-6 w-6 -top-3 -left-3 dark:text-white text-white z-30" />
+        <Icon className="absolute h-6 w-6 -bottom-3 -left-3 dark:text-white text-white z-30" />
+        <Icon className="absolute h-6 w-6 -top-3 -right-3 dark:text-white text-white z-30" />
+        <Icon className="absolute h-6 w-6 -bottom-3 -right-3 dark:text-white text-white z-30" />
+        
+        {/* Background pattern effect - behind the logo */}
+        <div className="pointer-events-none absolute inset-0 rounded-3xl z-0">
+          <div className="absolute inset-0 rounded-3xl [mask-image:linear-gradient(white,transparent)] group-hover:opacity-50"></div>
+          <motion.div
+            className="absolute inset-0 rounded-3xl bg-gradient-to-r from-purple-500 to-pink-500 opacity-0 group-hover:opacity-100 backdrop-blur-xl transition duration-500"
+            style={style}
+          />
+          <motion.div
+            className="absolute inset-0 rounded-3xl opacity-0 mix-blend-overlay group-hover:opacity-100"
+            style={style}
+          >
+            <p className="absolute inset-x-0 text-xs h-full break-words whitespace-pre-wrap text-white font-mono font-bold transition duration-500">
+              {randomString}
+            </p>
+          </motion.div>
+        </div>
+        
+        {/* Logo Image - always visible on top */}
+        <div className="w-full h-full relative flex items-center justify-center p-4 z-20">
+          <Image
+            src={logo}
+            alt={institution}
+            fill
+            className="object-contain transition-transform duration-300 group-hover:scale-110 z-20 relative"
+            onError={(e) => {
+              const target = e.target as HTMLImageElement;
+              target.style.display = "none";
+            }}
+          />
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function EducationSection() {
   return (
@@ -62,33 +133,7 @@ export default function EducationSection() {
               <div className="flex-1 bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 md:p-8 border border-gray-700/50 hover:border-purple-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/20">
                 <div className="flex flex-col md:flex-row gap-6 items-start">
                   {/* Logo Section */}
-                  <div className="flex-shrink-0">
-                    <div className="border border-black/[0.2] dark:border-white/[0.2] flex flex-col items-center justify-center max-w-sm mx-auto p-4 relative h-[10rem] w-[10rem] md:h-[12rem] md:w-[12rem] bg-black/30 rounded-3xl overflow-hidden group">
-                      <Icon className="absolute h-6 w-6 -top-3 -left-3 dark:text-white text-black z-10" />
-                      <Icon className="absolute h-6 w-6 -bottom-3 -left-3 dark:text-white text-black z-10" />
-                      <Icon className="absolute h-6 w-6 -top-3 -right-3 dark:text-white text-black z-10" />
-                      <Icon className="absolute h-6 w-6 -bottom-3 -right-3 dark:text-white text-black z-10" />
-                      
-                      <div className="w-full h-full relative flex items-center justify-center p-4">
-                        <Image
-                          src={education.logo}
-                          alt={education.institution}
-                          fill
-                          className="object-contain transition-transform duration-300 group-hover:scale-110"
-                          onError={(e) => {
-                            // Fallback if image doesn't exist
-                            const target = e.target as HTMLImageElement;
-                            target.style.display = "none";
-                          }}
-                        />
-                      </div>
-                      
-                      {/* EvervaultCard overlay effect */}
-                      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <EvervaultCard text="" className="w-full h-full" />
-                      </div>
-                    </div>
-                  </div>
+                  <LogoCard logo={education.logo} institution={education.institution} />
 
                   {/* Content Section */}
                   <div className="flex-1 space-y-4">
