@@ -31,12 +31,14 @@ import { Modal, ModalTrigger, ModalBody, ModalContent } from "@/components/ui/an
 import { Button } from "@/components/ui/stateful-button";
 import { Meteors } from "@/components/ui/meteors";
 import { Vortex } from "@/components/ui/vortex";
+import EducationSection from "@/components/EducationSection";
 
 export default function Home() {
   const navItems = [
     { label: "Home", href: "#home" },
     { label: "About", href: "#about" },
     { label: "Skills", href: "#skills" },
+    { label: "Education", href: "#education" },
     { label: "Projects", href: "#projects" },
   ];
 
@@ -712,6 +714,37 @@ export default function Home() {
             </ElectricBorder>
           </SkillsParallax>
         </div>
+      </section>
+
+      {/* Education Section */}
+      <section
+        id="education"
+        className="relative z-10 min-h-screen flex flex-col items-center justify-center px-4 md:px-8 lg:px-16 xl:px-24 py-20"
+      >
+        <div className="w-full max-w-7xl mb-16">
+          {/* Title with ScrollFloat animation */}
+          <div className="mb-16">
+            <div className="flex justify-center">
+              <ScrollFloat
+                containerClassName="text-center"
+                textClassName="text-white text-4xl font-medium tracking-tight md:text-6xl"
+                animationDuration={1}
+                ease="back.inOut(2)"
+                scrollStart="center bottom+=50%"
+                scrollEnd="bottom bottom-=40%"
+                stagger={0.03}
+              >
+                Education
+              </ScrollFloat>
+            </div>
+            {/* Small bar at the bottom of title */}
+            <div className="flex justify-center mt-4">
+              <div className="h-1 w-24 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full"></div>
+            </div>
+          </div>
+        </div>
+
+        <EducationSection />
       </section>
 
       {/* Projects Section */}
