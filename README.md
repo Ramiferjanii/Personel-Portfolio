@@ -1,6 +1,6 @@
 # 🚀 Rami Ben Ferjani - Portfolio Website
 
-A modern, interactive portfolio website showcasing my work as a BI Analyst & MERN Stack Developer. Built with Next.js, React, and TypeScript, featuring stunning animations, custom UI components, and a beautiful gradient-themed design.
+A modern, interactive portfolio website showcasing my work as a BI Analyst & MERN Stack Developer. Built with Next.js, React, and TypeScript, featuring stunning animations, custom UI components,
 
 ## ✨ Features
 
