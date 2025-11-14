@@ -1,4 +1,4 @@
-@import "tailwindcss";
+﻿@import "tailwindcss";
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
@@ -138,4 +138,122 @@
     width: 100%;
     height: 100%;
   }
+}
+
+@layer utilities {
+  .translate-y-\[101\%\] {
+    transform: translateY(101%);
+  }
+  
+  .-translate-y-\[101\%\] {
+    transform: translateY(-101%);
+  }
+}
+
+/* Custom Scrollbar Styling */
+@layer base {
+  /* Webkit browsers (Chrome, Safari, Edge) */
+  ::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    margin: 4px;
+    transition: background 0.3s ease;
+  }
+
+  ::-webkit-scrollbar-track:hover {
+    background: rgba(0, 0, 0, 0.4);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(
+      180deg,
+      #5227FF 0%,
+      #B19EEF 50%,
+      #FF9FFC 100%
+    );
+    border-radius: 10px;
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.1);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(
+      180deg,
+      #6B3FFF 0%,
+      #C5B0FF 50%,
+      #FFB3FF 100%
+    );
+    box-shadow: 0 0 15px rgba(82, 39, 255, 0.5),
+                0 0 30px rgba(255, 159, 252, 0.3),
+                inset 0 0 6px rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+  }
+
+  ::-webkit-scrollbar-thumb:active {
+    background: linear-gradient(
+      180deg,
+      #7A4FFF 0%,
+      #D4C5FF 50%,
+      #FFC2FF 100%
+    );
+    box-shadow: 0 0 20px rgba(82, 39, 255, 0.7),
+                0 0 40px rgba(255, 159, 252, 0.5);
+  }
+
+  ::-webkit-scrollbar-corner {
+    background: rgba(0, 0, 0, 0.3);
+  }
+
+  /* Firefox */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #5227FF rgba(0, 0, 0, 0.3);
+  }
+
+  /* Firefox scrollbar hover effect */
+  *:hover {
+    scrollbar-color: #6B3FFF rgba(0, 0, 0, 0.4);
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Animated scrollbar glow effect */
+  @keyframes scrollbar-glow {
+    0%, 100% {
+      box-shadow: 0 0 10px rgba(82, 39, 255, 0.3),
+                  0 0 20px rgba(255, 159, 252, 0.2);
+    }
+    50% {
+      box-shadow: 0 0 15px rgba(82, 39, 255, 0.5),
+                  0 0 30px rgba(255, 159, 252, 0.4);
+    }
+  }
+
+  /* Apply glow animation on scroll */
+  body.scrolling ::-webkit-scrollbar-thumb {
+    animation: scrollbar-glow 2s ease-in-out infinite;
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 15s linear infinite;
 }

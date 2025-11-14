@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import LoadingWrapper from "@/components/ui/LoadingWrapper";
+import ScrollbarHandler from "@/components/ui/ScrollbarHandler";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Rami Ben Ferjnai ",
+  title: "Rami Ben Ferjani ",
   description: "Create protfolio for Rami Ben Ferjani ",
 };
 
@@ -27,7 +29,8 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <ScrollbarHandler />
+        <LoadingWrapper>{children}</LoadingWrapper>
       </body>
     </html>
   );

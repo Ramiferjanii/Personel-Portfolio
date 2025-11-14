@@ -5,6 +5,8 @@ import TextType from "./TextType";
 import Magnet from "./Magnet";
 import RotatingText from "./RotatingText";
 import Orb from "./Orb";
+import StarBorder from "./bottonAnimation";
+import { Spotlight } from "@/components/ui/spotlight-new";
 
 interface HeroSectionProps {
   imageSrc: string;
@@ -16,11 +18,13 @@ interface HeroSectionProps {
 export default function HeroSection({
   imageSrc,
   name = "Rami Ben Ferjani",
-  title = "Front-end Developer",
-  subtitle = "UI Designer",
+  title = "Full Stack Developer & BI Analyst ",
+  subtitle = "MongoDB · Express · React · Node.js",
 }: HeroSectionProps) {
   return (
     <div className="relative z-50 w-full h-screen flex flex-col md:flex-row items-center justify-between px-4 md:px-8 lg:px-16 xl:px-24 py-8">
+      {/* Spotlight effect */}
+      <Spotlight />
       {/* Content Layer */}
       <div className="relative z-10 w-full h-full flex flex-col md:flex-row items-center justify-between">
         {/* Right side - Image (appears first on mobile) */}
@@ -141,12 +145,16 @@ export default function HeroSection({
             activeTransition="transform 0.2s ease-out"
             inactiveTransition="transform 0.4s ease-in-out"
           >
-            <a
-              href="#contact"
-              className="px-6 py-3 border-2 border-white text-white rounded-lg hover:bg-white hover:text-black transition-colors duration-300 inline-block"
+            <StarBorder
+              as="a"
+              href="mailto:ramiferjani.20@gmail.com"
+              color="#5227FF"
+              speed="6s"
+              thickness={2}
+              className="cursor-pointer hover:scale-105 transition-transform duration-300"
             >
-              CONTACT ME
-            </a>
+              Contact Me
+            </StarBorder>
           </Magnet>
         </motion.div>
         </motion.div>
