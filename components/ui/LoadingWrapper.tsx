@@ -7,7 +7,7 @@ export default function LoadingWrapper({ children }: { children: React.ReactNode
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    const MIN_LOADING_TIME = 500; // Reduced to 500ms for faster LCP
+    const MIN_LOADING_TIME = 100; // Reduced to 100ms for faster LCP
     const startTime = Date.now();
 
     // Hide loading screen once page is fully loaded

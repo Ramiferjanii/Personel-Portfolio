@@ -21,6 +21,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Rami Ben Ferjani ",
   description: "Create protfolio for Rami Ben Ferjani ",
+  other: {
+    "preload-image": "/images/backgroundMovedPic.png",
+  },
 };
 
 export default function RootLayout({
@@ -30,6 +33,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link
+          rel="preload"
+          href="/images/backgroundMovedPic.png"
+          as="image"
+          fetchPriority="high"
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
