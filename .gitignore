@@ -19,10 +19,18 @@
 
 # production
 /build
+<<<<<<< HEAD
+=======
+/dist
+>>>>>>> cb7b4aeb522e68a9625fd05cc911677f71d6559d
 
 # misc
 .DS_Store
 *.pem
+<<<<<<< HEAD
+=======
+*.log
+>>>>>>> cb7b4aeb522e68a9625fd05cc911677f71d6559d
 
 # debug
 npm-debug.log*
@@ -32,6 +40,13 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+<<<<<<< HEAD
+=======
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+>>>>>>> cb7b4aeb522e68a9625fd05cc911677f71d6559d
 
 # vercel
 .vercel
@@ -42,3 +57,16 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+<<<<<<< HEAD
+=======
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+Thumbs.db
+>>>>>>> cb7b4aeb522e68a9625fd05cc911677f71d6559d
