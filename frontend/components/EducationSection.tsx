@@ -89,6 +89,7 @@ function LogoCard({ logo, institution }: { logo: string; institution: string }) 
             src={logo}
             alt={institution}
             fill
+            sizes="(max-width: 768px) 10rem, 12rem"
             className="object-contain transition-transform duration-300 group-hover:scale-110 z-20 relative"
             onError={(e) => {
               const target = e.target as HTMLImageElement;

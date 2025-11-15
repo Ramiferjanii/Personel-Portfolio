@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
+import Image from "next/image";
 import TextType from "./TextType";
 import RotatingText from "./RotatingText";
 import Orb from "./Orb";
@@ -31,11 +32,13 @@ export default function HeroSection({
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="flex-1 flex items-center justify-center h-full order-1 md:order-2 mb-8 md:mb-0"
+          style={{ minHeight: '35vh' }}
         >
           <motion.div
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.3 }}
             className="relative w-[35vh] h-[35vh] md:w-[50vh] md:h-[50vh] max-w-[90vw] max-h-[90vw] flex items-center justify-center"
+            style={{ aspectRatio: '1 / 1' }}
           >
             {/* Orb animation behind the circle */}
             <div 
@@ -54,12 +57,22 @@ export default function HeroSection({
                 rotateOnHover={true}
               />
             </div>
-            {/* Circular image container */}
-            <div className="relative z-10 w-full h-full rounded-full overflow-hidden border-4 border-white/20 shadow-2xl">
-              <img
+            {/* Circular image container with fixed dimensions */}
+            <div 
+              className="relative z-10 w-full h-full rounded-full overflow-hidden border-4 border-white/20 shadow-2xl bg-gray-900"
+              style={{ aspectRatio: '1 / 1' }}
+            >
+              <Image
                 src={imageSrc}
                 alt={name}
-                className="w-full h-full object-cover"
+                fill
+                priority
+                sizes="(max-width: 768px) 35vh, 50vh"
+                className="object-cover"
+                quality={60}
+                style={{ objectFit: 'cover' }}
+                placeholder="blur"
+                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWEREiMxUf/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
               />
             </div>
           </motion.div>
@@ -71,13 +84,14 @@ export default function HeroSection({
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="flex-1 max-w-2xl order-2 md:order-1"
+          style={{ minHeight: '200px' }}
         >
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
           className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4 leading-tight"
-          style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}
+          style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.5)', minHeight: '120px' }}
         >
           Hi, I am
           <br />
