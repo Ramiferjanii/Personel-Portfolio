@@ -27,11 +27,60 @@ import ElectricBorder from "@/components/reactBits/electricBorder";
 import { TextHoverEffect } from "@/components/ui/text-hover-effect";
 import { SkillsParallax } from "@/components/reactBits/SkillsParallax";
 import { CardContainer, CardBody, CardItem } from "@/components/ui/3d-card";
-import { Modal, ModalTrigger, ModalBody, ModalContent } from "@/components/ui/animated-modal";
+import { Modal, ModalTrigger, ModalBody, ModalContent, useModal } from "@/components/ui/animated-modal";
 import { Button } from "@/components/ui/stateful-button";
 import { Meteors } from "@/components/ui/meteors";
 import { Vortex } from "@/components/ui/vortex";
 import EducationSection from "@/components/EducationSection";
+import { LinkPreview } from "@/components/ui/link-preview";
+import AnimatedGradientBackground from "@/components/reactBits/background";
+import ContactForm from "@/components/reactBits/ContactForm";
+import Footer from "@/components/reactBits/Footer";
+import ScrollToTop from "@/components/reactBits/ScrollToTop";
+import ScrollProgress from "@/components/reactBits/ScrollProgress";
+import Testimonials from "@/components/Testimonials";
+
+// Back to Main button component for modals
+function BackToMainButton() {
+  const { setOpen } = useModal();
+  
+  const handleBackToMain = () => {
+    setOpen(false);
+    // Scroll to home section after a short delay to allow modal to close
+    setTimeout(() => {
+      const homeSection = document.getElementById("projects");
+      if (homeSection) {
+        homeSection.scrollIntoView({ behavior: "smooth" });
+      } else {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    }, 100);
+  };
+
+  return (
+    <Button
+      onClick={handleBackToMain}
+      className="bg-gray-700 hover:bg-gray-600 text-white font-semibold px-6 py-3 rounded-lg shadow-lg hover:shadow-gray-500/50 transition-all duration-300 flex items-center gap-2"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="rotate-180"
+      >
+        <path d="M5 12h14" />
+        <path d="m12 5 7 7-7 7" />
+      </svg>
+      Back to Main
+    </Button>
+  );
+}
 
 export default function Home() {
   const navItems = [
@@ -40,29 +89,18 @@ export default function Home() {
     { label: "Skills", href: "#skills" },
     { label: "Education", href: "#education" },
     { label: "Projects", href: "#projects" },
+    { label: "Testimonials", href: "#testimonials" },
+    { label: "Contact", href: "#contact" },
   ];
 
   return (
     <div className="relative w-full bg-black">
+      {/* Scroll Progress Bar */}
+      <ScrollProgress />
+      
       {/* Fixed background and nav */}
       <div className="fixed inset-0 w-screen h-screen pointer-events-none z-0">
-        <LiquidEther
-          className="absolute inset-0"
-          colors={["#5227FF", "#FF9FFC", "#B19EEF"]}
-          autoDemo={true}
-          mouseForce={20}
-          cursorSize={100}
-        />
-        <SparklesCore
-          id="tsparticles"
-          background="transparent"
-          minSize={0.4}
-          maxSize={1}
-          particleDensity={100}
-          className="absolute inset-0 w-full h-full"
-          particleColor="#5227FF"
-          speed={2}
-        />
+        <AnimatedGradientBackground />
       </div>
 
       <PillNav
@@ -370,27 +408,53 @@ export default function Home() {
               Hello! I'm Rami Ben Ferjani, a Full-Stack Developer and Business Intelligence Analyst passionate about building smart, data-driven applications.
             </ScrollReveal>
 
-            <ScrollReveal
-              containerClassName="text-left md:text-center"
-              textClassName="text-gray-300 text-base md:text-lg leading-relaxed"
-              enableBlur={true}
-              baseOpacity={0.5}
-              baseRotation={2}
-              blurStrength={2}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-left md:text-center"
             >
-              I specialize in the MERN Stack, Next.js, and React Native to create responsive, high-performance web and mobile experiences.
-            </ScrollReveal>
+              <div className="text-gray-300 text-base md:text-lg leading-relaxed">
+                I specialize in the{" "}
+                <LinkPreview url="https://www.mongodb.com" className="font-bold text-purple-400 hover:text-purple-300">
+                  MERN Stack
+                </LinkPreview>
+                ,{" "}
+                <LinkPreview url="https://nextjs.org" className="font-bold text-purple-400 hover:text-purple-300">
+                  Next.js
+                </LinkPreview>
+                , and{" "}
+                <LinkPreview url="https://reactnative.dev" className="font-bold text-purple-400 hover:text-purple-300">
+                  React Native
+                </LinkPreview>{" "}
+                to create responsive, high-performance web and mobile experiences.
+              </div>
+            </motion.div>
 
-            <ScrollReveal
-              containerClassName="text-left md:text-center"
-              textClassName="text-gray-300 text-base md:text-lg leading-relaxed"
-              enableBlur={true}
-              baseOpacity={0.5}
-              baseRotation={2}
-              blurStrength={2}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="text-left md:text-center"
             >
-              But I don't just build—I analyze. I leverage tools like Power BI, Python, and SQL to transform raw data into interactive dashboards and actionable insights.
-            </ScrollReveal>
+              <div className="text-gray-300 text-base md:text-lg leading-relaxed">
+                But I don't just build—I analyze. I leverage tools like{" "}
+                <LinkPreview url="https://powerbi.microsoft.com" className="font-bold text-purple-400 hover:text-purple-300">
+                  Power BI
+                </LinkPreview>
+                ,{" "}
+                <LinkPreview url="https://www.python.org" className="font-bold text-purple-400 hover:text-purple-300">
+                  Python
+                </LinkPreview>
+                , and{" "}
+                <LinkPreview url="https://www.mysql.com" className="font-bold text-purple-400 hover:text-purple-300">
+                  SQL
+                </LinkPreview>{" "}
+                to transform raw data into interactive dashboards and actionable insights.
+              </div>
+            </motion.div>
 
             <ScrollReveal
               containerClassName="text-left md:text-center"
@@ -842,6 +906,9 @@ export default function Home() {
                     <span className="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-sm">Power BI</span>
                     <span className="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm">Data Analysis</span>
                   </div>
+                  <div className="mt-6">
+                    <BackToMainButton />
+                  </div>
                 </ModalContent>
               </ModalBody>
             </Modal>
@@ -911,21 +978,24 @@ export default function Home() {
                     <span className="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm">TypeScript</span>
                     <span className="px-3 py-1 bg-red-500/20 text-red-300 rounded-full text-sm">Appwrite</span>
                   </div>
-                  <Button
-                    onClick={async (e) => {
-                      e.preventDefault();
-                      // Open window immediately (synchronously) before async operations
-                      const url = "https://github.com/Ramiferjanii/Movie_Mobile-app";
-                      const newWindow = window.open(url, "_blank", "noopener,noreferrer");
-                      if (!newWindow) {
-                        // If popup was blocked, navigate in current window
-                        window.location.href = url;
-                      }
-                    }}
-                    className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-semibold px-6 py-3 rounded-lg shadow-lg hover:shadow-purple-500/50 transition-all duration-300"
-                  >
-                    <FaGithub className="w-5 h-5" /> View on GitHub
-                  </Button>
+                  <div className="flex gap-3 flex-wrap">
+                    <Button
+                      onClick={async (e) => {
+                        e.preventDefault();
+                        // Open window immediately (synchronously) before async operations
+                        const url = "https://github.com/Ramiferjanii/Movie_Mobile-app";
+                        const newWindow = window.open(url, "_blank", "noopener,noreferrer");
+                        if (!newWindow) {
+                          // If popup was blocked, navigate in current window
+                          window.location.href = url;
+                        }
+                      }}
+                      className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-semibold px-6 py-3 rounded-lg shadow-lg hover:shadow-purple-500/50 transition-all duration-300"
+                    >
+                      <FaGithub className="w-5 h-5" /> View on GitHub
+                    </Button>
+                    <BackToMainButton />
+                  </div>
                 </ModalContent>
               </ModalBody>
             </Modal>
@@ -994,19 +1064,22 @@ export default function Home() {
                     <span className="px-3 py-1 bg-white/20 text-white rounded-full text-sm">Next.js</span>
                     <span className="px-3 py-1 bg-green-500/20 text-green-300 rounded-full text-sm">AI/Vapi</span>
                   </div>
-                  <Button
-                    onClick={async (e) => {
-                      e.preventDefault();
-                      const url = "https://conversoo.netlify.app";
-                      const newWindow = window.open(url, "_blank", "noopener,noreferrer");
-                      if (!newWindow) {
-                        window.location.href = url;
-                      }
-                    }}
-                    className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-semibold px-6 py-3 rounded-lg shadow-lg hover:shadow-purple-500/50 transition-all duration-300"
-                  >
-                    <FaGlobe className="w-5 h-5" /> Visit Live Site
-                  </Button>
+                  <div className="flex gap-3 flex-wrap">
+                    <Button
+                      onClick={async (e) => {
+                        e.preventDefault();
+                        const url = "https://conversoo.netlify.app";
+                        const newWindow = window.open(url, "_blank", "noopener,noreferrer");
+                        if (!newWindow) {
+                          window.location.href = url;
+                        }
+                      }}
+                      className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-semibold px-6 py-3 rounded-lg shadow-lg hover:shadow-purple-500/50 transition-all duration-300"
+                    >
+                      <FaGlobe className="w-5 h-5" /> Visit Live Site
+                    </Button>
+                    <BackToMainButton />
+                  </div>
                 </ModalContent>
               </ModalBody>
             </Modal>
@@ -1076,19 +1149,22 @@ export default function Home() {
                     <span className="px-3 py-1 bg-green-500/20 text-green-300 rounded-full text-sm">Node.js</span>
                     <span className="px-3 py-1 bg-orange-500/20 text-orange-300 rounded-full text-sm">Firebase</span>
                   </div>
-                  <Button
-                    onClick={async (e) => {
-                      e.preventDefault();
-                      const url = "https://github.com/Ramiferjanii/Social-media-dashboard-";
-                      const newWindow = window.open(url, "_blank", "noopener,noreferrer");
-                      if (!newWindow) {
-                        window.location.href = url;
-                      }
-                    }}
-                    className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-semibold px-6 py-3 rounded-lg shadow-lg hover:shadow-purple-500/50 transition-all duration-300"
-                  >
-                    <FaGithub className="w-5 h-5" /> View on GitHub
-                  </Button>
+                  <div className="flex gap-3 flex-wrap">
+                    <Button
+                      onClick={async (e) => {
+                        e.preventDefault();
+                        const url = "https://github.com/Ramiferjanii/Social-media-dashboard-";
+                        const newWindow = window.open(url, "_blank", "noopener,noreferrer");
+                        if (!newWindow) {
+                          window.location.href = url;
+                        }
+                      }}
+                      className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-semibold px-6 py-3 rounded-lg shadow-lg hover:shadow-purple-500/50 transition-all duration-300"
+                    >
+                      <FaGithub className="w-5 h-5" /> View on GitHub
+                    </Button>
+                    <BackToMainButton />
+                  </div>
                 </ModalContent>
               </ModalBody>
             </Modal>
@@ -1157,19 +1233,22 @@ export default function Home() {
                     <span className="px-3 py-1 bg-white/20 text-white rounded-full text-sm">Next.js</span>
                     <span className="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm">OTP</span>
                   </div>
-                  <Button
-                    onClick={async (e) => {
-                      e.preventDefault();
-                      const url = "https://storei.netlify.app/sign-in";
-                      const newWindow = window.open(url, "_blank", "noopener,noreferrer");
-                      if (!newWindow) {
-                        window.location.href = url;
-                      }
-                    }}
-                    className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-semibold px-6 py-3 rounded-lg shadow-lg hover:shadow-purple-500/50 transition-all duration-300"
-                  >
-                    <FaGlobe className="w-5 h-5" /> Visit Live Site
-                  </Button>
+                  <div className="flex gap-3 flex-wrap">
+                    <Button
+                      onClick={async (e) => {
+                        e.preventDefault();
+                        const url = "https://storei.netlify.app/sign-in";
+                        const newWindow = window.open(url, "_blank", "noopener,noreferrer");
+                        if (!newWindow) {
+                          window.location.href = url;
+                        }
+                      }}
+                      className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-semibold px-6 py-3 rounded-lg shadow-lg hover:shadow-purple-500/50 transition-all duration-300"
+                    >
+                      <FaGlobe className="w-5 h-5" /> Visit Live Site
+                    </Button>
+                    <BackToMainButton />
+                  </div>
                 </ModalContent>
               </ModalBody>
             </Modal>
@@ -1238,19 +1317,22 @@ export default function Home() {
                     <span className="px-3 py-1 bg-orange-500/20 text-orange-300 rounded-full text-sm">Java</span>
                     <span className="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-sm">OOP</span>
                   </div>
-                  <Button
-                    onClick={async (e) => {
-                      e.preventDefault();
-                      const url = "https://github.com/Ramiferjanii/Bank-Management-System-JavaOOP";
-                      const newWindow = window.open(url, "_blank", "noopener,noreferrer");
-                      if (!newWindow) {
-                        window.location.href = url;
-                      }
-                    }}
-                    className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-semibold px-6 py-3 rounded-lg shadow-lg hover:shadow-purple-500/50 transition-all duration-300"
-                  >
-                    <FaGithub className="w-5 h-5" /> View on GitHub
-                  </Button>
+                  <div className="flex gap-3 flex-wrap">
+                    <Button
+                      onClick={async (e) => {
+                        e.preventDefault();
+                        const url = "https://github.com/Ramiferjanii/Bank-Management-System-JavaOOP";
+                        const newWindow = window.open(url, "_blank", "noopener,noreferrer");
+                        if (!newWindow) {
+                          window.location.href = url;
+                        }
+                      }}
+                      className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-semibold px-6 py-3 rounded-lg shadow-lg hover:shadow-purple-500/50 transition-all duration-300"
+                    >
+                      <FaGithub className="w-5 h-5" /> View on GitHub
+                    </Button>
+                    <BackToMainButton />
+                  </div>
                 </ModalContent>
               </ModalBody>
             </Modal>
@@ -1319,19 +1401,22 @@ export default function Home() {
                     <span className="px-3 py-1 bg-black/40 text-white rounded-full text-sm">Symfony</span>
                     <span className="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm">SQL</span>
                   </div>
-                  <Button
-                    onClick={async (e) => {
-                      e.preventDefault();
-                      const url = "https://github.com/Ramiferjanii/Symfony-Project-Ecommerce";
-                      const newWindow = window.open(url, "_blank", "noopener,noreferrer");
-                      if (!newWindow) {
-                        window.location.href = url;
-                      }
-                    }}
-                    className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-semibold px-6 py-3 rounded-lg shadow-lg hover:shadow-purple-500/50 transition-all duration-300"
-                  >
-                    <FaGithub className="w-5 h-5" /> View on GitHub
-                  </Button>
+                  <div className="flex gap-3 flex-wrap">
+                    <Button
+                      onClick={async (e) => {
+                        e.preventDefault();
+                        const url = "https://github.com/Ramiferjanii/Symfony-Project-Ecommerce";
+                        const newWindow = window.open(url, "_blank", "noopener,noreferrer");
+                        if (!newWindow) {
+                          window.location.href = url;
+                        }
+                      }}
+                      className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-semibold px-6 py-3 rounded-lg shadow-lg hover:shadow-purple-500/50 transition-all duration-300"
+                    >
+                      <FaGithub className="w-5 h-5" /> View on GitHub
+                    </Button>
+                    <BackToMainButton />
+                  </div>
                 </ModalContent>
               </ModalBody>
             </Modal>
@@ -1400,19 +1485,22 @@ export default function Home() {
                     <span className="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm">Python</span>
                     <span className="px-3 py-1 bg-green-500/20 text-green-300 rounded-full text-sm">Testing</span>
                   </div>
-                  <Button
-                    onClick={async (e) => {
-                      e.preventDefault();
-                      const url = "https://github.com/Ramiferjanii/chess";
-                      const newWindow = window.open(url, "_blank", "noopener,noreferrer");
-                      if (!newWindow) {
-                        window.location.href = url;
-                      }
-                    }}
-                    className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-semibold px-6 py-3 rounded-lg shadow-lg hover:shadow-purple-500/50 transition-all duration-300"
-                  >
-                    <FaGithub className="w-5 h-5" /> View on GitHub
-                  </Button>
+                  <div className="flex gap-3 flex-wrap">
+                    <Button
+                      onClick={async (e) => {
+                        e.preventDefault();
+                        const url = "https://github.com/Ramiferjanii/chess";
+                        const newWindow = window.open(url, "_blank", "noopener,noreferrer");
+                        if (!newWindow) {
+                          window.location.href = url;
+                        }
+                      }}
+                      className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-semibold px-6 py-3 rounded-lg shadow-lg hover:shadow-purple-500/50 transition-all duration-300"
+                    >
+                      <FaGithub className="w-5 h-5" /> View on GitHub
+                    </Button>
+                    <BackToMainButton />
+                  </div>
                 </ModalContent>
               </ModalBody>
             </Modal>
@@ -1437,6 +1525,18 @@ export default function Home() {
           />
         </div>
       </section>
+
+      {/* Testimonials Section */}
+      <Testimonials />
+
+      {/* Contact Section */}
+      <ContactForm />
+
+      {/* Footer */}
+      <Footer />
+
+      {/* Scroll to Top Button */}
+      <ScrollToTop />
 
     </div>
   );
