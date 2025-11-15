@@ -1,17 +1,13 @@
 "use client";
 
 import { motion } from "motion/react";
-import LiquidEther from "@/components/reactBits/cursor";
 import HeroSection from "@/components/reactBits/HeroSection";
 import PillNav from "@/components/reactBits/PillNav";
 import ScrollReveal from "@/components/summary";
 import ScrollFloat from "@/components/reactBits/ScrollFloat";
 import LogoLoop from "@/components/reactBits/LogoLoop";
-import { MagicBento } from "@/components/reactBits/MagicBento";
 import FlowingMenu from "@/components/FlowingMenu";
-import StarBorder from "@/components/reactBits/bottonAnimation";
-import { SparklesCore } from "@/components/ui/sparkles";
-import { MacbookScroll } from "@/components/ui/macbook-scroll";
+import { ContainerScroll } from "@/components/ui/container-scroll-animation";
 import { FaGithub, FaReact, FaNode, FaHtml5, FaLinkedin, FaSymfony, FaUser, FaPhone, FaEnvelope, FaMapMarkerAlt, FaCheckCircle, FaCalendarAlt, FaGraduationCap, FaBriefcase, FaGlobe } from "react-icons/fa";
 import { TbBrandTailwind, TbBrandReactNative, TbBrandSupabase, TbBrandTypescript } from "react-icons/tb";
 import { RiNextjsFill, RiPhpFill, RiJavascriptFill, RiJavaLine } from "react-icons/ri";
@@ -21,11 +17,7 @@ import { AiOutlinePython } from "react-icons/ai";
 import { BiLogoMongodb } from "react-icons/bi";
 import { IoLogoCss3 } from "react-icons/io5";
 import { MdDataUsage, MdScience, MdSettings } from "react-icons/md";
-import ScrollCount from "@/components/reactBits/ScrollCount";
-import MetallicIcon from "@/components/reactBits/MetallicIcon";
-import ElectricBorder from "@/components/reactBits/electricBorder";
-import { TextHoverEffect } from "@/components/ui/text-hover-effect";
-import { SkillsParallax } from "@/components/reactBits/SkillsParallax";
+import { SkillsLayoutGrid } from "@/components/reactBits/SkillsLayoutGrid";
 import { CardContainer, CardBody, CardItem } from "@/components/ui/3d-card";
 import { Modal, ModalTrigger, ModalBody, ModalContent, useModal } from "@/components/ui/animated-modal";
 import { Button } from "@/components/ui/stateful-button";
@@ -585,150 +577,7 @@ export default function Home() {
         </div>
         
         <div className="w-full max-w-[95rem]">
-          <SkillsParallax>
-            {/* Programming Languages */}
-            <ElectricBorder color="#5227FF" speed={1} thickness={2} className="rounded-lg w-full">
-              <div className="flex flex-col items-center gap-4 p-4 sm:p-6 lg:p-8 bg-black/40 backdrop-blur-sm min-h-[200px]">
-                <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-4 text-center">Programming Languages</div>
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5 gap-3 sm:gap-4 md:gap-5 lg:gap-6 w-full">
-                  {[
-                    { name: "JavaScript", icon: <RiJavascriptFill className="text-4xl sm:text-5xl text-yellow-400" />, count: 95 },
-                    { name: "T.Script", icon: <TbBrandTypescript className="text-4xl sm:text-5xl text-blue-500" />, count: 90 },
-                    { name: "Python", icon: <AiOutlinePython className="text-4xl sm:text-5xl text-blue-600" />, count: 85 },
-                    { name: "Java", icon: <RiJavaLine className="text-4xl sm:text-5xl text-orange-500" />, count: 80 },
-                    { name: "SQL", icon: <SiMysql className="text-4xl sm:text-5xl text-blue-400" />, count: 88 },
-                  ].map((skill, idx) => (
-                    <div key={`${skill.name}-${idx}`} className="flex flex-col items-center gap-2 sm:gap-3 p-2 sm:p-4">
-                      <MetallicIcon className="text-3xl sm:text-4xl">
-                        {skill.icon}
-                      </MetallicIcon>
-                      <div className="text-sm sm:text-lg font-semibold text-white text-center">{skill.name}</div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </ElectricBorder>
-
-            {/* Frontend Development */}
-            <ElectricBorder color="#5227FF" speed={1} thickness={2} className="rounded-lg w-full">
-              <div className="flex flex-col items-center gap-4 p-4 sm:p-6 lg:p-8 bg-black/40 backdrop-blur-sm min-h-[200px]">
-                <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-4 text-center">Frontend Development</div>
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-3 sm:gap-4 md:gap-5 lg:gap-6 w-full">
-                  {[
-                    { name: "React", icon: <FaReact className="text-4xl sm:text-5xl text-cyan-400" />, count: 95 },
-                    { name: "Next.js", icon: <RiNextjsFill className="text-4xl sm:text-5xl text-white" />, count: 92 },
-                    { name: "React Native", icon: <TbBrandReactNative className="text-4xl sm:text-5xl text-cyan-500" />, count: 88 },
-                    { name: "Expo", icon: <SiExpo className="text-4xl sm:text-5xl text-gray-300" />, count: 85 },
-                    { name: "Redux", icon: <SiRedux className="text-4xl sm:text-5xl text-purple-500" />, count: 90 },
-                    { name: "HTML5", icon: <FaHtml5 className="text-4xl sm:text-5xl text-orange-500" />, count: 98 },
-                    { name: "CSS3", icon: <IoLogoCss3 className="text-4xl sm:text-5xl text-blue-500" />, count: 95 },
-                    { name: "Tailwind CSS", icon: <TbBrandTailwind className="text-4xl sm:text-5xl text-cyan-400" />, count: 93 },
-                    { name: "Material-UI", icon: <MdSettings className="text-4xl sm:text-5xl text-blue-500" />, count: 87 },
-                  ].map((skill, idx) => (
-                    <div key={`${skill.name}-${idx}`} className="flex flex-col items-center gap-2 sm:gap-3 p-2 sm:p-4">
-                      <MetallicIcon className="text-3xl sm:text-4xl">
-                        {skill.icon}
-                      </MetallicIcon>
-                      <div className="text-sm sm:text-lg font-semibold text-white text-center">{skill.name}</div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </ElectricBorder>
-
-            {/* Backend Development */}
-            <ElectricBorder color="#5227FF" speed={1} thickness={2} className="rounded-lg w-full">
-              <div className="flex flex-col items-center gap-4 p-4 sm:p-6 lg:p-8 bg-black/40 backdrop-blur-sm min-h-[200px]">
-                <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-4 text-center">Backend Development</div>
-                <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4 gap-3 sm:gap-4 md:gap-5 lg:gap-6 w-full">
-                  {[
-                    { name: "Node.js", icon: <FaNode className="text-4xl sm:text-5xl text-green-500" />, count: 92 },
-                    { name: "Express", icon: <SiExpress className="text-4xl sm:text-5xl text-gray-300" />, count: 90 },
-                    { name: "REST APIs", icon: <FaNode className="text-4xl sm:text-5xl text-green-400" />, count: 93 },
-                    { name: "Symfony", icon: <FaSymfony className="text-4xl sm:text-5xl text-black" />, count: 85 },
-                  ].map((skill, idx) => (
-                    <div key={`${skill.name}-${idx}`} className="flex flex-col items-center gap-2 sm:gap-3 p-2 sm:p-4">
-                      <MetallicIcon className="text-3xl sm:text-4xl">
-                        {skill.icon}
-                      </MetallicIcon>
-                      <div className="text-sm sm:text-lg font-semibold text-white text-center">{skill.name}</div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </ElectricBorder>
-
-            {/* Databases & ORMs */}
-            <ElectricBorder color="#5227FF" speed={1} thickness={2} className="rounded-lg w-full">
-              <div className="flex flex-col items-center gap-4 p-4 sm:p-6 lg:p-8 bg-black/40 backdrop-blur-sm min-h-[200px]">
-                <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-4 text-center">Databases & ORMs</div>
-                <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4 gap-3 sm:gap-4 md:gap-5 lg:gap-6 w-full">
-                  {[
-                    { name: "MongoDB", icon: <BiLogoMongodb className="text-4xl sm:text-5xl text-green-500" />, count: 90 },
-                    { name: "MySQL", icon: <SiMysql className="text-4xl sm:text-5xl text-blue-400" />, count: 88 },
-                    { name: "Supabase", icon: <TbBrandSupabase className="text-4xl sm:text-5xl text-green-400" />, count: 85 },
-                    { name: "Appwrite", icon: <SiAppwrite className="text-4xl sm:text-5xl text-red-500" />, count: 87 },
-                  ].map((skill, idx) => (
-                    <div key={`${skill.name}-${idx}`} className="flex flex-col items-center gap-2 sm:gap-3 p-2 sm:p-4">
-                      <MetallicIcon className="text-3xl sm:text-4xl">
-                        {skill.icon}
-                      </MetallicIcon>
-                      <div className="text-sm sm:text-lg font-semibold text-white text-center">{skill.name}</div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </ElectricBorder>
-
-            {/* Tools & Platforms */}
-            <ElectricBorder color="#5227FF" speed={1} thickness={2} className="rounded-lg w-full">
-              <div className="flex flex-col items-center gap-4 p-4 sm:p-6 lg:p-8 bg-black/40 backdrop-blur-sm min-h-[200px]">
-                <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-4 text-center">Tools & Platforms</div>
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4 gap-3 sm:gap-4 md:gap-5 lg:gap-6 w-full">
-                  {[
-                    { name: "Git", icon: <SiGit className="text-4xl sm:text-5xl text-orange-500" />, count: 95 },
-                    { name: "GitHub", icon: <FaGithub className="text-4xl sm:text-5xl text-white" />, count: 95 },
-                    { name: "CI/CD", icon: <MdSettings className="text-4xl sm:text-5xl text-blue-400" />, count: 85 },
-                    { name: "Vercel", icon: <SiVercel className="text-4xl sm:text-5xl text-white" />, count: 90 },
-                    { name: "Netlify", icon: <SiNetlify className="text-4xl sm:text-5xl text-teal-400" />, count: 88 },
-                    { name: "Webpack", icon: <SiWebpack className="text-4xl sm:text-5xl text-blue-500" />, count: 82 },
-                    { name: "Power BI", icon: <MdDataUsage className="text-4xl sm:text-5xl text-yellow-400" />, count: 88 },
-                    { name: "Firebase", icon: <SiFirebase className="text-4xl sm:text-5xl text-orange-400" />, count: 85 },
-                  ].map((skill, idx) => (
-                    <div key={`${skill.name}-${idx}`} className="flex flex-col items-center gap-2 sm:gap-3 p-2 sm:p-4">
-                      <MetallicIcon className="text-3xl sm:text-4xl">
-                        {skill.icon}
-                      </MetallicIcon>
-                      <div className="text-sm sm:text-lg font-semibold text-white text-center">{skill.name}</div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </ElectricBorder>
-
-            {/* Data Science & AI */}
-            <ElectricBorder color="#5227FF" speed={1} thickness={2} className="rounded-lg w-full">
-              <div className="flex flex-col items-center gap-4 p-4 sm:p-6 lg:p-8 bg-black/40 backdrop-blur-sm min-h-[200px]">
-                <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-4 text-center">Data Science & AI</div>
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-5 gap-3 sm:gap-4 md:gap-5 lg:gap-6 w-full">
-                  {[
-                    { name: "Pandas", icon: <SiPandas className="text-4xl sm:text-5xl text-blue-500" />, count: 88 },
-                    { name: "NumPy", icon: <SiNumpy className="text-4xl sm:text-5xl text-blue-600" />, count: 85 },
-                    { name: "Matplotlib", icon: <MdScience className="text-4xl sm:text-5xl text-blue-400" />, count: 82 },
-                    { name: "Machine Learning", icon: <AiOutlinePython className="text-4xl sm:text-5xl text-blue-600" />, count: 80 },
-                    { name: "Deep Learning", icon: <AiOutlinePython className="text-4xl sm:text-5xl text-blue-600" />, count: 75 },
-                  ].map((skill, idx) => (
-                    <div key={`${skill.name}-${idx}`} className="flex flex-col items-center gap-2 sm:gap-3 p-2 sm:p-4">
-                      <MetallicIcon className="text-3xl sm:text-4xl">
-                        {skill.icon}
-                      </MetallicIcon>
-                      <div className="text-sm sm:text-lg font-semibold text-white text-center">{skill.name}</div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </ElectricBorder>
-          </SkillsParallax>
+          <SkillsLayoutGrid />
         </div>
       </section>
 
@@ -1460,21 +1309,35 @@ export default function Home() {
         </div>
 
         <div className="w-full overflow-hidden">
-          <MacbookScroll
-            title={null}
-            badge={
-              <div className="flex flex-col items-center gap-2">
-                <span className="text-black text-lg md:text-xl ">
-                  Click the link
-                </span>
-                <a href="https://github.com/Ramiferjanii" target="_blank" rel="noopener noreferrer" className="hover:scale-105 transition-transform duration-300">
-                  <FaGithub className="h-10 w-10 text-black -rotate-12 transform hover:rotate-0 transition-transform duration-300" />
-                </a>
-              </div>
+          <ContainerScroll
+            titleComponent={
+              <>
+                <h1 className="text-4xl font-semibold text-white">
+                  Explore My Work on <br />
+                  <span className="text-4xl md:text-[6rem] font-bold mt-1 leading-none">
+                    GitHub
+                  </span>
+                </h1>
+                <div className="flex flex-col items-center gap-2 mt-4">
+                  <span className="text-white text-lg md:text-xl">
+                    Click the link
+                  </span>
+                  <a href="https://github.com/Ramiferjanii" target="_blank" rel="noopener noreferrer" className="hover:scale-105 transition-transform duration-300">
+                    <FaGithub className="h-10 w-10 text-white -rotate-12 transform hover:rotate-0 transition-transform duration-300" />
+                  </a>
+                </div>
+              </>
             }
-            src={`/images/image.png`}
-            showGradient={false}
-          />
+          >
+            <img
+              src={`/images/image.png`}
+              alt="GitHub profile"
+              height={720}
+              width={1400}
+              className="mx-auto rounded-2xl object-cover h-full object-left-top"
+              draggable={false}
+            />
+          </ContainerScroll>
         </div>
       </section>
 
